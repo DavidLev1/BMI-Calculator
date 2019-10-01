@@ -1,20 +1,37 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+
+<div id="container" dir="rtl">
+  <h1 id="header">מחשבון BMI</h1>
+
+  <form id="calc-form" (submit)="getBMI($event, weight.value, height.value)">
+    <input type="number" name="weight" id="weight" placeholder='משקל ביחידות ק"ג' #weight max=350 step="0.01"><br><br>
+    <input type="number" name="height" id="height" placeholder="גובה ביחידות מטר" #height max=2.5 step="0.01"><br><br>
+    <button >חשב BMI</button> 
+  </form>
+
+  <h3 *ngIf="!areLegalInputs" class="bmi-indication">
+    משקל וגובה חייבים להיות גדולים מאפס 
+  </h3> 
+
+  <h2 *ngIf="resultOfBMI <= 18.5 && areLegalInputs && resultOfBMI !== null" class="bmi-result">  
+      {{resultOfBMI}} = BMI 
+    <h3 class="bmi-indication"> תת משקל </h3> 
+  </h2> 
+
+  <h2 *ngIf="resultOfBMI > 18.5 && resultOfBMI < 25 && areLegalInputs" class="bmi-result">   
+    {{resultOfBMI}} = BMI 
+    <h3 class="bmi-indication">משקל תקין </h3> 
+  </h2> 
+
+  <h2 *ngIf="resultOfBMI > 25 && resultOfBMI < 30 && areLegalInputs" class="bmi-result"> 
+    {{resultOfBMI}} = BMI   
+    <h3 class="bmi-indication"> עודף משקל </h3> 
+  </h2> 
+
+  <h2 *ngIf="resultOfBMI > 30 && areLegalInputs" class="bmi-result"> 
+    {{resultOfBMI}} = BMI  
+    <h3 class="bmi-indication"> השמנת יתר </h3> 
+  </h2>  
+
 </div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+
 
